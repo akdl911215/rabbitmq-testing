@@ -26,9 +26,28 @@ let AppController = class AppController {
     }
     testRmq() {
         return this.client.emit('medium.rock', {
-            bookName: 'The Way Of Kings',
-            author: 'Brandon Sanderson',
-            data: new Date().toString(),
+            type: 'object',
+            properties: {
+                Header: {
+                    type: 'object',
+                    properties: {
+                        HttpStatusCode: {
+                            type: 'integer',
+                        },
+                    },
+                    required: ['HttpStatusCode'],
+                },
+                Body: {
+                    type: 'object',
+                    properties: {
+                        Message: {
+                            type: 'string',
+                        },
+                    },
+                    required: ['Message'],
+                },
+            },
+            required: ['Header', 'Body'],
         });
     }
 };
