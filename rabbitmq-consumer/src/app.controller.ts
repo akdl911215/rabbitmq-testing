@@ -20,15 +20,10 @@ export class AppController {
   @EventPattern('medium.rock')
   readMessage(@Payload() data: any, @Ctx() context: RmqContext) {
     const channel = context.getChannelRef();
-    // console.log('channel : ', channel);
-    //
     const originalMsg = context.getMessage();
-    // console.log('originalMsg : ', originalMsg);
 
     console.log('data: ', data);
     channel.ack(originalMsg);
-
-    // return originalMsg;
   }
 
   @MessagePattern('notifications')

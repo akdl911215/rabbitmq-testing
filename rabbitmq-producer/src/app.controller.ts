@@ -16,7 +16,7 @@ export class AppController {
 
   @Get('rmq-test')
   testRmq() {
-    return this.client.emit('medium.rock', {
+    const data = {
       type: 'object',
       properties: {
         Header: {
@@ -39,6 +39,7 @@ export class AppController {
         },
       },
       required: ['Header', 'Body'],
-    });
+    };
+    return this.client.emit('medium.rock', data);
   }
 }

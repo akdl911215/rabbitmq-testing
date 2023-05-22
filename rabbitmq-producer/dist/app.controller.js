@@ -25,7 +25,7 @@ let AppController = class AppController {
         return this.appService.getHello();
     }
     testRmq() {
-        return this.client.emit('medium.rock', {
+        const data = {
             type: 'object',
             properties: {
                 Header: {
@@ -48,7 +48,8 @@ let AppController = class AppController {
                 },
             },
             required: ['Header', 'Body'],
-        });
+        };
+        return this.client.emit('medium.rock', data);
     }
 };
 __decorate([
